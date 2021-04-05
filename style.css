@@ -1,0 +1,47 @@
+body{
+    margin: 0;
+    font-family: sans-serif;
+}
+.mainBody{
+    background-color: #f8d3d3;
+}
+.header{
+    text-align: center;
+    padding: 20px 0;
+    background-color:#252929;
+    color: white;
+}
+.container{
+    margin-top: 20px;
+}
+.dataFrames{
+    display:grid; 
+    grid-gap: 15px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    color: rgb(12, 66, 66);
+    background-color: #f1cfcf;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+.stuff{
+    background-color: rgb(241, 241, 241);
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;;
+}
+.stuff p{
+    padding: 10px ;
+    font-style: italic;
+}
+.stuff h3{
+    padding:0 10px;
+    text-align: center;
+}
+.stuff img{
+    margin-left: 12%;
+    border-style: solid;  
+    width:  70%;
+    height: 50%;
+    object-fit: cover;
+}
+.selects{
+    max-width: 90%;
+}
