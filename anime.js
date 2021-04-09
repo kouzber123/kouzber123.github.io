@@ -1,47 +1,65 @@
+
 let i = 1
-async function getApi(){
-    const getResponse = await fetch(`https://api.jikan.moe/v3/search/anime?q=&order_by=score&sort=desc&page=${i}`) /*fetch, promise this*/ 
-    const data = await getResponse.json()
-   //print(data.results)
-    uploadData(data.results)
-    console.log(data.results)
-}
-getApi()
-
-async function changePage(){
-    document.querySelector(".stuff").remove()
-    i +=1
-    const getResponse = await fetch(`https://api.jikan.moe/v3/search/anime?q=&order_by=score&sort=desc&page=${i}`) /*fetch, promise this*/ 
-    const data = await getResponse.json()
-    //print(data.results)
-    uploadData(data.results)
-}
-
-async function prePage(){ 
-    i-=1             //minustetaan ja katsotaan tapahtuuko mitään
-    if(i <= 0){  //jos alle miinuksen niin plussataan yhdellä
-        i +=1
-    }else{     //muutoin poistetaan aiempi sivu ja eteenpäin
-        document.querySelector(".stuff").remove()
-        const getResponse = await fetch(`https://api.jikan.moe/v3/search/anime?q=&order_by=score&sort=desc&page=${i}`) /*fetch, promise this*/ 
+let category = "anime"
+    async function getApi(category){
+        const getResponse = await fetch(`https://api.jikan.moe/v3/search/${category}?q=&order_by=score&sort=desc&page=${i}`) /*fetch, promise this*/ 
         const data = await getResponse.json()
-        //getInfo(data.results)
+       //print(data.results)
+        uploadData(data.results)
+        console.log(data.results)
+    }
+ getApi(category)
+    async function changePage(){
+        document.querySelector(".stuff").remove()
+        i +=1
+        const getResponse = await fetch(`https://api.jikan.moe/v3/search/${category}?q=&order_by=score&sort=desc&page=${i}`) /*fetch, promise this*/ 
+        const data = await getResponse.json()
+        //print(data.results)
         uploadData(data.results)
     }
+    async function prePage(){ 
+        i-=1             //minustetaan ja katsotaan tapahtuuko mitään
+        if(i <= 0){  //jos alle miinuksen niin plussataan yhdellä
+            i +=1
+        }else{     //muutoin poistetaan aiempi sivu ja eteenpäin
+            document.querySelector(".stuff").remove()
+            const getResponse = await fetch(`https://api.jikan.moe/v3/search/${category}?q=&order_by=score&sort=desc&page=${i}`) /*fetch, promise this*/ 
+            const data = await getResponse.json()
+            //getInfo(data.results)
+            uploadData(data.results)
+        }
+    }
+    function uploadData(Data){
+        document.getElementById("containers").innerHTML=`
+        <div class="dataFrames">
+                        ${Object(Data).map(function(results){
+                                return `<div class="stuff"><h3>${results.title}</h3>
+                                <img src=${results.image_url} alt="anime image">
+                                <p>${results.synopsis} <strong>Score:</strong> ${results.score}</p> </div>`                                             
+                        }).join('')}                       
+                    </div>
+        `
+    }
+function changeAct(){
+    let element = document.getElementById("switch-inner")
+    if(element.value=="anime") {
+     
+    document.getElementById("mORa").innerHTML = "To Anime"
+    document.getElementById("title").innerHTML = "Top Manga List"
+    element.value = "manga"
+    category = "manga"
+    i = 1
+    }
+    else if(element.value == "manga") {
+        document.getElementById("mORa").innerHTML = "To Manga"
+        document.getElementById("title").innerHTML = "Top Anime List"
+        element.value = "anime"
+        category = "anime"
+        i = 1
+    }
+    //category = "manga"
+    getApi(category)
 }
-
-function uploadData(Data){
-    document.getElementById("containers").innerHTML=`
-    <div class="dataFrames">
-                    ${Object(Data).map(function(results){
-                            return `<div class="stuff"><h3>${results.title}</h3>
-                            <img src=${results.image_url} alt="anime image">
-                            <p>${results.synopsis} <strong>Score:</strong> ${results.score}</p> </div>`                                             
-                    }).join('')}                       
-                </div>
-    `
-}
-
 
 
 //lista esimerkki
