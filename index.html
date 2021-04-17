@@ -13,11 +13,18 @@
                 <button id="switch-inner" onclick="changeAct()" value="anime"><p id="mORa">to Manga</p></button>  
             </div>
             <h1  id="title">Top Anime List</h1>
+            <div class="searchbar">
+                <input class="search" type="text" id="value">
+                <button class="find" onclick="findIt()">Search</button>
+            </div>
+           
             <button onclick="prePage()">Previous page</button>
             <button onclick="changePage()">Next page   </button>
             <div id="anime"></div>
         </div>
-        <div class="container" id="containers"></div>
+        <div class="container" id="containers">    </div>
+             <button onclick="prePage()">Previous page</button>
+             <button onclick="changePage()">Next page   </button>
     </div>
     <script src="anime.js"></script>
 </body>
