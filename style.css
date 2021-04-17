@@ -22,6 +22,7 @@ body{
     background-color: #f1cfcf;
     margin-left: 50px;
     margin-right: 50px;
+    
 }
 .stuff{
     background-color: rgb(241, 241, 241);
@@ -31,8 +32,10 @@ body{
     padding: 10px ;
     font-style: italic;
 }
-.stuff h3{
+.stuff h4{
     padding:0 10px;
+    margin-bottom: 5%;
+    font-size: 14px;   
     text-align: center;
 }
 .stuff img{
@@ -41,7 +44,11 @@ body{
     width:  70%;
     height: 50%;
     object-fit: cover;
+    
 }
 .selects{
     max-width: 90%;
+}
+.searchbar{
+    margin-bottom: 15px;
 }
