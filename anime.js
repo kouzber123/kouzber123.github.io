@@ -1,6 +1,8 @@
 
+
 let i = 1
 let category = "anime"
+let on = true
     async function getApi(category){
         const getResponse = await fetch(`https://api.jikan.moe/v3/search/${category}?q=&order_by=score&sort=desc&page=${i}`) /*fetch, promise this*/ 
         const data = await getResponse.json()
@@ -8,14 +10,23 @@ let category = "anime"
         uploadData(data.results)
         console.log(data.results)
     }
- getApi(category)
-    async function changePage(){
-        document.querySelector(".stuff").remove()
-        i +=1
-        const getResponse = await fetch(`https://api.jikan.moe/v3/search/${category}?q=&order_by=score&sort=desc&page=${i}`) /*fetch, promise this*/ 
+    async function findIt(){
+        const series = document.getElementById("value").value
+        const getResponse = await fetch(`https://api.jikan.moe/v3/search/${category}?q=${series}`) /*fetch, promise this*/ 
         const data = await getResponse.json()
         //print(data.results)
         uploadData(data.results)
+        document.getElementById("value").value="";
+    
+    }
+ getApi(category)
+    async function changePage(){       
+        i +=1
+        document.querySelector(".stuff").remove()
+            const getResponse = await fetch(`https://api.jikan.moe/v3/search/${category}?q=&order_by=score&sort=desc&page=${i}`) /*fetch, promise this*/ 
+            const data = await getResponse.json()
+            uploadData(data.results)
+        //print(data.results)
     }
     async function prePage(){ 
         i-=1             //minustetaan ja katsotaan tapahtuuko mitään
@@ -23,17 +34,19 @@ let category = "anime"
             i +=1
         }else{     //muutoin poistetaan aiempi sivu ja eteenpäin
             document.querySelector(".stuff").remove()
-            const getResponse = await fetch(`https://api.jikan.moe/v3/search/${category}?q=&order_by=score&sort=desc&page=${i}`) /*fetch, promise this*/ 
-            const data = await getResponse.json()
-            //getInfo(data.results)
-            uploadData(data.results)
+                const getResponse = await fetch(`https://api.jikan.moe/v3/search/${category}?q=&order_by=score&sort=desc&page=${i}`) /*fetch, promise this*/ 
+                const data = await getResponse.json()
+                //getInfo(data.results)
+                uploadData(data.results)
+            }
+        
         }
-    }
     function uploadData(Data){
         document.getElementById("containers").innerHTML=`
         <div class="dataFrames">
                         ${Object(Data).map(function(results){
-                                return `<div class="stuff"><h3>${results.title}</h3>
+                                return `<div class="stuff">                             
+                                <h4>${results.title}</h4>
                                 <img src=${results.image_url} alt="anime image">
                                 <p>${results.synopsis} <strong>Score:</strong> ${results.score}</p> </div>`                                             
                         }).join('')}                       
@@ -83,3 +96,4 @@ function changeAct(){
         console.log(imageData.results)
     }
 }*/
+
