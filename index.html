@@ -1,54 +1,31 @@
-body{
-    margin: 0;
-    font-family: sans-serif;
-}
-.mainBody{
-    background-color: #f8d3d3;
-}
-.header{
-    text-align: center;
-    padding: 20px 0;
-    background-color:#252929;
-    color: white;
-}
-.container{
-    margin-top: 20px;
-}
-.dataFrames{
-    display:grid; 
-    grid-gap: 15px;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    color: rgb(12, 66, 66);
-    background-color: #f1cfcf;
-    margin-left: 50px;
-    margin-right: 50px;
-    
-}
-.stuff{
-    background-color: rgb(241, 241, 241);
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;;
-}
-.stuff p{
-    padding: 10px ;
-    font-style: italic;
-}
-.stuff h4{
-    padding:0 10px;
-    margin-bottom: 5%;
-    font-size: 14px;   
-    text-align: center;
-}
-.stuff img{
-    margin-left: 12%;
-    border-style: solid;  
-    width:  70%;
-    height: 50%;
-    object-fit: cover;
-    
-}
-.selects{
-    max-width: 90%;
-}
-.searchbar{
-    margin-bottom: 15px;
-}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="mainBody">
+        <div class="header">
+            <div class="switch">
+                <button id="switch-inner" onclick="changeAct()" value="anime"><p id="mORa">to Manga</p></button>  
+            </div>
+            <h1  id="title">Top Anime List</h1>
+            <div class="searchbar">
+                <input class="search" type="text" id="value">
+                <button class="find" onclick="findIt()">Search</button>
+            </div>
+           
+            <button onclick="prePage()">Previous page</button>
+            <button onclick="changePage()">Next page   </button>
+            <div id="anime"></div>
+        </div>
+        <div class="container" id="containers">    </div>
+             <button onclick="prePage()">Previous page</button>
+             <button onclick="changePage()">Next page   </button>
+    </div>
+    <script src="anime.js"></script>
+</body>
+</html>
